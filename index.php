@@ -3,9 +3,41 @@ $category = ['Входящие', 'Учеба', 'Работа', 'Домашние
 
 $array = [
     0 => [
-        'task' => '',
-        'date_'
+        'task' => 'Собеседование в IT компании',
+        'date_of_completion' => '25.12.2019',
+        'category' => 'Работа',
+        'is_done' => false
     ],
+    1 => [
+        'task' => 'Выполнить тестовое задание',
+        'date_of_completion' => '26.12.2019',
+        'category' => 'Работа',
+        'is_done' => false
+    ],
+    2 => [
+        'task' => 'Сделать задание первого раздела',
+        'date_of_completion' => '21.12.2019',
+        'category' => 'Учеба',
+        'is_done' => true
+    ],
+    3 => [
+        'task' => 'Встреча с другом',
+        'date_of_completion' => '22.12.2019',
+        'category' => 'Входящие',
+        'is_done' => false
+    ],
+    4 => [
+        'task' => 'Купить корм для кота',
+        'date_of_completion' => false,
+        'category' => 'Домашние дела',
+        'is_done' => false
+    ],
+    5 => [
+        'task' => 'Заказать пиццу',
+        'date_of_completion' => false,
+        'category' => 'Домашние дела',
+        'is_done' => false
+    ]
 ];
 
 $show_complete_tasks = rand(0, 1);
@@ -53,12 +85,16 @@ $show_complete_tasks = rand(0, 1);
                     <h2 class="content__side-heading">Проекты</h2>
 
                     <nav class="main-navigation">
+                        
                         <ul class="main-navigation__list">
+                            <?php foreach ($category as $val): ?>
                             <li class="main-navigation__list-item">
-                                <a class="main-navigation__list-item-link" href="#">Название проекта</a>
+                                <a class="main-navigation__list-item-link" href="#"><?=$val;?></a>
                                 <span class="main-navigation__list-item-count">0</span>
                             </li>
+                            <?php endforeach; ?>
                         </ul>
+                        
                     </nav>
 
                     <a class="button button--transparent button--plus content__side-button" href="pages/form-project.html" target="project_add">Добавить проект</a>
@@ -86,7 +122,7 @@ $show_complete_tasks = rand(0, 1);
                             <span class="checkbox__text">Показывать выполненные</span>
                         </label>
                     </div>
-
+                    
                     <table class="tasks">
                         <tr class="tasks__item task">
                             <td class="task__select">
@@ -102,21 +138,25 @@ $show_complete_tasks = rand(0, 1);
 
                             <td class="task__date"></td>
                         </tr>
+                        <?= (isset($errors)) ? 'form--invalid' : '';?>"
                         <?php if ($show_complete_tasks): ?>
-                        <tr class="tasks__item task task--completed">
+                        <?php foreach ($array as $key => $val): ?>
+                        <?php if($val['is_done'] == true && !show_complete_tasks) {continue;}?>
+                        <tr class="tasks__item task <? ($val['is_done'] == true) ? 'task--completed' : ''; ?>">
                             <td class="task__select">
                                 <label class="checkbox task__checkbox">
                                     <input class="checkbox__input visually-hidden" type="checkbox" checked>
-                                    <span class="checkbox__text">Записаться на интенсив "Базовый PHP"</span>
+                                    <span class="checkbox__text"><?=$val['task'];?></span>
                                 </label>
                             </td>
-                            <td class="task__date">10.10.2019</td>
-
+                            <td class="task__date"><?=$val['date_of_completion'];?></td>
                             <td class="task__controls">
                             </td>
                         </tr>
+                        <?php endforeach; ?>
                         <?php endif ;?>
                     </table>
+                    
                 </main>
             </div>
         </div>
