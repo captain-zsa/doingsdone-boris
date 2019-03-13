@@ -138,7 +138,6 @@ $show_complete_tasks = rand(0, 1);
 
                             <td class="task__date"></td>
                         </tr>
-                        <?= (isset($errors)) ? 'form--invalid' : '';?>"
                         <?php if ($show_complete_tasks): ?>
                         <?php foreach ($array as $key => $val): ?>
                         <?php if($val['is_done'] == true && !show_complete_tasks) {continue;}?>
