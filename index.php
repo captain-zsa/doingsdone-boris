@@ -1,7 +1,7 @@
 <?php
 $category = ['Входящие', 'Учеба', 'Работа', 'Домашние дела', 'Авто'];
 
-$array = [
+$projects = [
     0 => [
         'task' => 'Собеседование в IT компании',
         'date_of_completion' => '25.12.2019',
@@ -40,6 +40,17 @@ $array = [
     ]
 ];
 
+//$count_projects = function ($projects, $category) {
+//$count = 0;
+//    foreach ($projects as $val) {
+//        if ($val['category'] == $category) {
+//$count++;
+//}
+//    }
+// return $count;
+//}
+
+
 $show_complete_tasks = rand(0, 1);
 ?>
 <!DOCTYPE html>
@@ -73,7 +84,6 @@ $show_complete_tasks = rand(0, 1);
 
                         <div class="user-menu__data">
                             <p>Пупырка</p>
-
                             <a href="#">Выйти</a>
                         </div>
                     </div>
@@ -124,22 +134,8 @@ $show_complete_tasks = rand(0, 1);
                     </div>
                     
                     <table class="tasks">
-                        <tr class="tasks__item task">
-                            <td class="task__select">
-                                <label class="checkbox task__checkbox">
-                                    <input class="checkbox__input visually-hidden task__checkbox" type="checkbox" value="1">
-                                    <span class="checkbox__text">Сделать главную страницу Дела в порядке</span>
-                                </label>
-                            </td>
-
-                            <td class="task__file">
-                                <a class="download-link" href="#">Home.psd</a>
-                            </td>
-
-                            <td class="task__date"></td>
-                        </tr>
                         <?php if ($show_complete_tasks): ?>
-                        <?php foreach ($array as $key => $val): ?>
+                        <?php foreach ($projects as $key => $val): ?>
                         <?php if($val['is_done'] == true && !show_complete_tasks) {continue;}?>
                         <tr class="tasks__item task <? ($val['is_done'] == true) ? 'task--completed' : ''; ?>">
                             <td class="task__select">
