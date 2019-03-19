@@ -40,7 +40,7 @@ $projects = [
     ]
 ];
 
-/*
+
 function count_projects ($array, $category) {
 $count = 0;
     foreach ($array as $val) {
@@ -50,17 +50,7 @@ $count = 0;
     }
     return $count;
 }
-*/
-function getNumberOfTasks($tasks, $category)
-{
-    $numberOfTasks = 0;
-    foreach ($tasks as $task) {
-        if ($task['category'] === $category) {
-            $numberOfTasks += 1;
-        }
-    }
-    return $numberOfTasks;
-}
+
 
 $show_complete_tasks = rand(0, 1);
 ?>
@@ -111,7 +101,7 @@ $show_complete_tasks = rand(0, 1);
                             <?php foreach ($category as $val): ?>
                             <li class="main-navigation__list-item">
                                 <a class="main-navigation__list-item-link" href="#"><?=$val;?></a>
-                                <span class="main-navigation__list-item-count"><? getNumberOfTasks ($projects, $category);?></span>
+                                <span class="main-navigation__list-item-count"><?= count_projects ($projects, $val);?></span>
                             </li>
                             <?php endforeach; ?>
                         </ul>
